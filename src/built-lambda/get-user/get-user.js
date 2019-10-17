@@ -1,6 +1,13 @@
-const { db } = require('../server')
+const mongoose = require('mongoose')
 const { verify } = require('jsonwebtoken')
 const { User } = require('../../models')
+
+const dbOptions = {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+}
+
+mongoose.connect(process.env.REACT_APP_DB_URL, dbOptions)
 
 exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false
