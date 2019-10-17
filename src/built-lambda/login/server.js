@@ -11,6 +11,6 @@ const db = mongoose.connection
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
-exports.handler = {
+module.exports = {
   db,
 }
