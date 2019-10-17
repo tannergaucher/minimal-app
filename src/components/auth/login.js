@@ -1,14 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { useHistory } from 'react-router-dom'
+
+import { UserContext } from '../context/user-context'
+import { IsAuthContext } from '../context/is-auth-context'
 
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const { setUser } = useContext(UserContext)
+  const { setIsAuth } = useContext(IsAuthContext)
+
+  const history = useHistory()
+
   return (
     <form
       onSubmit={async e => {
         e.preventDefault()
-
         const res = await fetch(`/.netlify/functions/login`, {
           method: 'POST',
           headers: {
@@ -21,9 +29,11 @@ export default function Login() {
         })
 
         const { data } = await res.json()
+
         localStorage.setItem('token', data.token)
-        // set data.user to user context
-        // navigate to index page
+        setUser(data.user)
+        setIsAuth(true)
+        history.push(`/`)
       }}
     >
       <input

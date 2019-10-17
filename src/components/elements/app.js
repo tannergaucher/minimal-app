@@ -1,34 +1,15 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 
-import { Header, Footer } from '../elements'
-import { IndexPage, LoginPage, SignupPage } from '../pages'
-
-import { UserProvider } from '../context/user-context'
+import { Header, Footer, Main } from '../elements'
 
 function App() {
   return (
-    <UserProvider value={null}>
-      <Router>
-        <div className="App">
-          <Header />
-          <main>
-            <Switch>
-              <Route path="/login">
-                <LoginPage />
-              </Route>
-              <Route path="/signup">
-                <SignupPage />
-              </Route>
-              <Route path="/">
-                <IndexPage />
-              </Route>
-            </Switch>
-          </main>
-          <Footer />
-        </div>
-      </Router>
-    </UserProvider>
+    <Router>
+      <Header />
+      <Main />
+      <Footer />
+    </Router>
   )
 }
 
