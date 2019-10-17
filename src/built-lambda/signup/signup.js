@@ -1,7 +1,7 @@
 const { hash } = require('bcrypt')
 const { sign } = require('jsonwebtoken')
 
-const db = require('../server')
+const { db } = require('../server')
 const { User } = require('../../models')
 
 exports.handler = async (event, context) => {

@@ -1,4 +1,4 @@
-const db = require('../server')
+const { db } = require('../server')
 const { verify } = require('jsonwebtoken')
 const { User } = require('../../models')
 
