@@ -1,6 +1,5 @@
-const { sign } = require('jsonwebtoken')
-
 const db = require('../server')
+const { sign } = require('jsonwebtoken')
 const { User } = require('../../models')
 
 exports.handler = async (event, context) => {
