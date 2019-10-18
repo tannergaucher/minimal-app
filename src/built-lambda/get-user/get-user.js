@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const { verify } = require('jsonwebtoken')
+
 const { User } = require('../../models')
 
 const dbOptions = {
