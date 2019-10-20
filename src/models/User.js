@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
-  // TODO: FORMAT EMAIL
   email: {
     type: String,
     unique: true,

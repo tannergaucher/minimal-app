@@ -1,7 +1,7 @@
-const { sign } = require('jsonwebtoken')
-const { User } = require('../../models')
-
 const mongoose = require('mongoose')
+const { verify } = require('jsonwebtoken')
+
+const { User } = require('../../models')
 
 const dbOptions = {
   useNewUrlParser: true,
@@ -11,21 +11,17 @@ const dbOptions = {
 mongoose.connect(process.env.REACT_APP_DB_URL, dbOptions)
 
 exports.handler = async (event, context) => {
-  context.callbackWaitsForEmptyEventLoop = false // why this?
+  context.callbackWaitsForEmptyEventLoop = false
 
   try {
     const req = JSON.parse(event.body)
-    const [user] = await User.find({ email: req.email })
-    const token = sign({ userId: user.id }, process.env.REACT_APP_APP_SECRET)
+    const verifiedToken = verify(req.token, process.env.REACT_APP_APP_SECRET)
+    const { userId } = verifiedToken
+    const user = await User.findById(userId)
 
     return {
       statusCode: 200,
-      body: JSON.stringify({
-        data: {
-          user,
-          token,
-        },
-      }),
+      body: JSON.stringify({ data: user }),
     }
   } catch (err) {
     return {

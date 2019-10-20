@@ -1,8 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import { UserContext } from '../context/user-context'
-import { IsAuthContext } from '../context/is-auth-context'
+import { UserContext, IsAuthContext } from '../context'
 
 export default function Login() {
   const [email, setEmail] = useState('')

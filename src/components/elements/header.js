@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { Logout } from '../auth'
-import { IsAuthContext } from '../context/is-auth-context'
+import { IsAuthContext } from '../context'
 
 const StyledHeader = styled.header`
   display: flex;

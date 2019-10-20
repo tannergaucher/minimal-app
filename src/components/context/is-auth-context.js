@@ -1,12 +1,15 @@
-import React, { useState, createContext } from 'react'
-
-export const IsAuthContext = createContext()
+import React, { useState, createContext, useLayoutEffect } from 'react'
 
 export default function MyIsAuthContext({ children }) {
   const [isAuth, setIsAuth] = useState(false)
 
-  // do useEffect stuff
-  // take token from local storage
+  useLayoutEffect(() => {
+    const token = localStorage.getItem('token')
+
+    if (token) {
+      setIsAuth(true)
+    }
+  }, [])
 
   return (
     <IsAuthContext.Provider value={{ isAuth, setIsAuth }}>
@@ -14,3 +17,5 @@ export default function MyIsAuthContext({ children }) {
     </IsAuthContext.Provider>
   )
 }
+
+export const IsAuthContext = createContext()
